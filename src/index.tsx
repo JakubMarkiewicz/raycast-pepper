@@ -131,13 +131,13 @@ function fallback(text?: string, fallback = "--"): string {
 function buildRecord(article: HTMLElement): Deal {
   const q = (query: string) => article.querySelector(query);
   const href = q("a.thread-link")?.rawAttributes;
-  const price = fallback(q(".thread-price")?.childNodes[0].rawText);
+  const price = fallback(q(".thread-price")?.childNodes[0]?.rawText);
   const points = Number(fallback(q(".cept-vote-temp")?.rawText?.trim()?.slice(0, -1), "0"));
   const img = fallback(q("img.thread-image")?.rawAttributes?.src).replace("300x300", "100x100");
   const user = fallback(q("span.thread-username")?.rawText);
   const merchant = fallback(q("span.cept-merchant-name")?.rawText);
   const oldPrice = fallback(q("span.mute--text")?.rawText);
-  const description = fallback(q("div.userHtml-content > div")?.childNodes[0].rawText);
+  const description = fallback(q("div.userHtml-content > div")?.childNodes[0]?.rawText);
 
   return {
     title: fallback(href?.title),
